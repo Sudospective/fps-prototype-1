@@ -23,7 +23,7 @@ public class gameManager : MonoBehaviour
     [SerializeField] GameObject menuLose;
 
     //Player
-    [SerializeField] GameObject player;
+    public GameObject player;      //changed from serialized field to public to grant access to the enemy ai agent -Demetreus
     [SerializeField] int playerHealth;
     
     // Start is called before the first frame update
