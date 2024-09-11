@@ -4279,9 +4279,10 @@ MonoBehaviour:
   menuWin: {fileID: 186789925}
   menuLose: {fileID: 576686212}
   player: {fileID: 2044212668}
-  playerScript: {fileID: 0}
+  playerScript: {fileID: 2044212669}
   playerHealth: 5
   playerHPBarFill: {fileID: 1121714923}
+  enemyCounter: {fileID: 514736292}
 --- !u!1001 &1628252953
 PrefabInstance:
   m_ObjectHideFlags: 0
