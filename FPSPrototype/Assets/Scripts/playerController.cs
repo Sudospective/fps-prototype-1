@@ -23,6 +23,8 @@ public class playerController : MonoBehaviour, IDamage
     Vector3 moveDirection;
     Vector3 playerVelocity;
 
+    int maxHP;
+
     int jumpCount;
     bool isSprinting;
     bool isShooting;
@@ -30,7 +32,8 @@ public class playerController : MonoBehaviour, IDamage
     // Start is called before the first frame update
     void Start()
     {
-        
+        maxHP = HP;
+        UpdatePlayerUI();
     }
 
     // Update is called once per frame
@@ -93,6 +96,11 @@ public class playerController : MonoBehaviour, IDamage
         }
     }
 
+    void UpdatePlayerUI()
+    {
+        gameManager.instance.playerHPBarFill.fillAmount = (float)HP / maxHP;
+    }
+
     IEnumerator Shoot()
     {
         isShooting = true;
@@ -106,7 +114,10 @@ public class playerController : MonoBehaviour, IDamage
     public void TakeDamage(int amount)
     {
         //subtract player health
-        HP -= amount;  
+        HP -= amount;
+
+        // Update UI
+        UpdatePlayerUI();
         
         if(HP <= 0)
         {
