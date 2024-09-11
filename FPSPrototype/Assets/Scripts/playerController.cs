@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class playerController : MonoBehaviour
+public class playerController : MonoBehaviour, IDamage
 {
     [SerializeField] int HP;
     [SerializeField] float speed;
@@ -103,7 +103,7 @@ public class playerController : MonoBehaviour
         isShooting = false;
     }
 
-    public void takeDamage(int amount)
+    public void TakeDamage(int amount)
     {
         //subtract player health
         HP -= amount;  
