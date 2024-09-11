@@ -15,6 +15,7 @@ public class gameManager : MonoBehaviour
     [SerializeField] int totalWaves;
     [SerializeField] float waveInterval;//if we want to have waves come out on a timer,
                                         //rather than after the entire prior wave is defeated
+    public Spawner enemySpawner;
 
     //Menu
     [SerializeField] bool isPaused;
@@ -27,7 +28,7 @@ public class gameManager : MonoBehaviour
     public GameObject player;      //changed from serialized field to public to grant access to the enemy ai agent -Demetreus
     public playerController playerScript;
     [SerializeField] int playerHealth;
-    
+
     // Start is called before the first frame update
     void Awake()
     {
@@ -36,21 +37,22 @@ public class gameManager : MonoBehaviour
         player = GameObject.FindWithTag("Player");
         playerScript = player.GetComponent<playerController>();
 
-
+        currentWave = 0;
+        nextWave();
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(Input.GetButtonDown("Cancel"))
+        if (Input.GetButtonDown("Cancel"))
         {
-            if(menuActive == null)
+            if (menuActive == null)
             {
                 statePause();
                 menuActive = menuPause;
                 menuActive.SetActive(isPaused);
             }
-            else if(menuActive == menuPause)
+            else if (menuActive == menuPause)
             {
                 stateUnpause();
             }
@@ -62,7 +64,7 @@ public class gameManager : MonoBehaviour
         enemyCount += amount;
 
         //current wave is over
-        if(enemyCount <= 0)
+        if (enemyCount <= 0)
         {
             //checks if that was last wave
             if (currentWave == totalWaves)
@@ -75,7 +77,6 @@ public class gameManager : MonoBehaviour
             }
             else
             {
-                currentWave += 1;
                 nextWave();
             }
         }
@@ -84,9 +85,11 @@ public class gameManager : MonoBehaviour
 
     public void nextWave()
     {
+        currentWave += 1;
         Debug.Log("Starting wave: " + currentWave);
 
         //Spawn enemies based on currentWave
+        enemySpawner.StartWave(currentWave);
     }
 
     public void statePause()
