@@ -27,6 +27,7 @@ public class gameManager : MonoBehaviour
     public GameObject player;      //changed from serialized field to public to grant access to the enemy ai agent -Demetreus
     public playerController playerScript;
     [SerializeField] int playerHealth;
+    [SerializeField] public Image playerHPBarFill;
     
     // Start is called before the first frame update
     void Awake()
