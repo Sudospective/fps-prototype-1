@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -28,6 +29,7 @@ public class gameManager : MonoBehaviour
     public playerController playerScript;
     [SerializeField] int playerHealth;
     [SerializeField] public Image playerHPBarFill;
+    [SerializeField] public TMP_Text enemyCounter;
     
     // Start is called before the first frame update
     void Awake()
@@ -60,7 +62,9 @@ public class gameManager : MonoBehaviour
 
     public void updateGameGoal(int amount)
     {
+        // increment enemy count by amount
         enemyCount += amount;
+        enemyCounter.text = enemyCount.ToString("F0");
 
         //current wave is over
         if(enemyCount <= 0)
