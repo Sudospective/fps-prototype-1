@@ -13,7 +13,11 @@ public class playerController : MonoBehaviour
     [SerializeField] float shotRate;
 
     [SerializeField] CharacterController controller;
+    [SerializeField] LayerMask ignoreMask;
+
     [SerializeField] GameObject bullet;
+    [SerializeField] int shootDamage;
+    [SerializeField] float shootRate;
     [SerializeField] Transform shotPosition;
 
     Vector3 moveDirection;
@@ -97,5 +101,17 @@ public class playerController : MonoBehaviour
         // Wait for shot rate
         yield return new WaitForSeconds(shotRate);
         isShooting = false;
+    }
+
+    public void takeDamage(int amount)
+    {
+        //subtract player health
+        HP -= amount;  
+        
+        if(HP <= 0)
+        {
+            //the player is dead
+            gameManager.instance.youLose();
+        }
     }
 }

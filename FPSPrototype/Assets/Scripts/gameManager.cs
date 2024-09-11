@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class gameManager : MonoBehaviour
 {
@@ -24,6 +25,7 @@ public class gameManager : MonoBehaviour
 
     //Player
     public GameObject player;      //changed from serialized field to public to grant access to the enemy ai agent -Demetreus
+    public playerController playerScript;
     [SerializeField] int playerHealth;
     
     // Start is called before the first frame update
@@ -32,6 +34,9 @@ public class gameManager : MonoBehaviour
         instance = this;
         timeScaleOrig = Time.timeScale;
         player = GameObject.FindWithTag("Player");
+        playerScript = player.GetComponent<playerController>();
+
+
     }
 
     // Update is called once per frame
