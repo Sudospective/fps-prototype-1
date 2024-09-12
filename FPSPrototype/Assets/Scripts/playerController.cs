@@ -28,8 +28,12 @@ public class playerController : MonoBehaviour, IDamage
     bool isShooting;
 
     [SerializeField] float slideDuration;
+    [SerializeField] float slideInitialSpeedMultiplier;
+    [SerializeField] float slideEndSpeedMultiplier;
     [SerializeField] float slideSpeedMultiplier;
     bool isSliding;
+    bool jumpCancel;
+    Vector3 slideMomentum;
 
     // Start is called before the first frame update
     void Start()
@@ -38,7 +42,7 @@ public class playerController : MonoBehaviour, IDamage
         UpdatePlayerUI();
     }
 
-    // Update is called once per frame
+    // Update is called once per frame  
     void Update()
     {
         Movement();
@@ -48,6 +52,16 @@ public class playerController : MonoBehaviour, IDamage
         if (Input.GetButton("Fire1") && !isShooting)
         {
             StartCoroutine(Shoot());
+        }
+
+        if (Input.GetButtonDown("Slide") && controller.isGrounded && !isSliding)
+        {
+            StartCoroutine(Slide());
+        }
+
+        if(Input.GetButtonDown("Jump") && isSliding)
+        {
+            jumpCancel = true;
         }
     }
 
@@ -65,16 +79,33 @@ public class playerController : MonoBehaviour, IDamage
             Input.GetAxis("Horizontal") * transform.right +
             Input.GetAxis("Vertical") * transform.forward
         );
+
+        if (!isSliding)
+        {
+            controller.Move(moveDirection * speed * Time.deltaTime);
+        }
+
         // Move player in X and Z axis
         controller.Move(moveDirection * speed * Time.deltaTime);
         // Check if pressing jump and if we can jump
         if (Input.GetButtonDown("Jump") && jumpCount < numberOfJumps)
         {
-            // Increase jump count
-            jumpCount++;
-            // Set player Y velocity
-            playerVelocity.y = jumpSpeed * 2.0f;
+            if (isSliding && jumpCancel)
+            {
+                playerVelocity = slideMomentum;
+                playerVelocity.y = jumpSpeed * 2.0f;
+                isSliding = false;
+                jumpCancel = false;
+            }
+            else if (!isSliding)
+            {
+                // Increase jump count
+                jumpCount++;
+                // Set player Y velocity
+                playerVelocity.y = jumpSpeed * 2.0f;
+            }
         }
+
         // Move player in Y axis
         controller.Move(playerVelocity * Time.deltaTime);
         // Enact gravity on player
@@ -136,5 +167,40 @@ public class playerController : MonoBehaviour, IDamage
     }
 
 
-    
+    IEnumerator Slide()
+    {
+        isSliding = true;
+
+        float initialSpeed = speed * slideInitialSpeedMultiplier;
+        float finalSpeed = speed * slideEndSpeedMultiplier;
+        float currentSpeed = initialSpeed;
+
+        Vector3 slideDirection = transform.forward;
+        slideMomentum = slideDirection * initialSpeed;
+
+        float elapsedTime = 0f;
+
+        while (elapsedTime < slideDuration)
+        {
+            // Linearly interpolate between initialSpeed and finalSpeed based on elapsed time
+            currentSpeed = Mathf.Lerp(initialSpeed, finalSpeed, elapsedTime/slideDuration);
+
+            // Move the player forward with the current speed
+            controller.Move(slideDirection * currentSpeed * Time.deltaTime);
+
+            elapsedTime += Time.deltaTime;
+            yield return null;
+        }
+
+        isSliding = false;
+
+        if(jumpCancel)
+        {
+            playerVelocity = slideMomentum;
+            playerVelocity.y = jumpSpeed * 2.0f;
+            jumpCancel = false;
+        }
+    }
 }
+    
+
