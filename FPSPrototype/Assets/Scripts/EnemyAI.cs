@@ -9,6 +9,7 @@ public class EnemyAI : MonoBehaviour, IDamage
     [SerializeField] NavMeshAgent navAgent;
     [SerializeField] Transform shootPos;
     [SerializeField] Transform headPos;
+    [SerializeField] int faceTargetSpeed;
 
     [SerializeField] int hitpoints;
 
@@ -16,6 +17,9 @@ public class EnemyAI : MonoBehaviour, IDamage
     Color colorHit;
 
     bool isShooting;
+
+    Vector3 playerDirection;
+    bool playerInRange;
 
     [SerializeField] GameObject bullet;
     [SerializeField] float shootRate;
@@ -28,12 +32,21 @@ public class EnemyAI : MonoBehaviour, IDamage
 
     void Update()
     {
+        playerDirection = gameManager.instance.player.transform.position - headPos.position;
         navAgent.SetDestination(gameManager.instance.player.transform.position);
 
-        if(!isShooting)
+        if (navAgent.remainingDistance < navAgent.stoppingDistance)
+            FaceTarget();
+
+        if (!isShooting)
         {
             StartCoroutine(Shoot());
         }
+    }
+    void FaceTarget()
+    {
+        Quaternion rot = Quaternion.LookRotation(playerDirection);
+        transform.rotation = Quaternion.Lerp(transform.rotation, rot, Time.deltaTime * faceTargetSpeed);
     }
 
     IEnumerator Shoot()
