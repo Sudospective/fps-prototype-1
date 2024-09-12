@@ -10,7 +10,6 @@ public class playerController : MonoBehaviour, IDamage
     [SerializeField] int numberOfJumps;
     [SerializeField] float jumpSpeed;
     [SerializeField] float gravity;
-    [SerializeField] float shotRate;
 
     [SerializeField] CharacterController controller;
     [SerializeField] LayerMask ignoreMask;
@@ -105,9 +104,9 @@ public class playerController : MonoBehaviour, IDamage
     {
         isShooting = true;
         // Instantiate bullet
-        Instantiate(bullet, shotPosition.position, transform.rotation);
+        Instantiate(bullet, shotPosition.position, Camera.main.transform.rotation);
         // Wait for shot rate
-        yield return new WaitForSeconds(shotRate);
+        yield return new WaitForSeconds(shootRate);
         isShooting = false;
     }
 
