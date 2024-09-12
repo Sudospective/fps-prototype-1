@@ -24,10 +24,12 @@ public class gameManager : MonoBehaviour
     [SerializeField] GameObject menuPause;
     [SerializeField] GameObject menuWin;
     [SerializeField] GameObject menuLose;
+    
 
     //Player
-    public GameObject player;      //changed from serialized field to public to grant access to the enemy ai agent -Demetreus
+    public GameObject player;     //changed from serialized field to public to grant access to the enemy ai agent -Demetreus
     public playerController playerScript;
+    public GameObject damagePanel;
     [SerializeField] int playerHealth;
     [SerializeField] public Image playerHPBarFill;
     [SerializeField] public TMP_Text enemyCounter;

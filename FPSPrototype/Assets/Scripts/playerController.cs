@@ -115,14 +115,21 @@ public class playerController : MonoBehaviour, IDamage
     {
         //subtract player health
         HP -= amount;
-
         // Update UI
         UpdatePlayerUI();
-        
-        if(HP <= 0)
+        StartCoroutine(damageFlash());
+
+        if (HP <= 0)
         {
             //the player is dead
             gameManager.instance.youLose();
         }
+    }
+
+    IEnumerator damageFlash()
+    {
+        gameManager.instance.damagePanel.SetActive(true);
+        yield return new WaitForSeconds(0.1f);
+        gameManager.instance.damagePanel.SetActive(false);
     }
 }
