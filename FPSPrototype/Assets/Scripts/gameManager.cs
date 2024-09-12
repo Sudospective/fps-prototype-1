@@ -31,7 +31,8 @@ public class gameManager : MonoBehaviour
     [SerializeField] int playerHealth;
     [SerializeField] public Image playerHPBarFill;
     [SerializeField] public TMP_Text enemyCounter;
-    
+    [SerializeField] public TMP_Text waveCounter;
+
     // Start is called before the first frame update
     void Awake()
     {
@@ -64,6 +65,8 @@ public class gameManager : MonoBehaviour
 
     public void updateGameGoal(int amount)
     {
+        Debug.Log("UPDATE GAME GOAL CALLED");
+
         // increment enemy count by amount
         enemyCount += amount;
         enemyCounter.text = enemyCount.ToString("F0");
@@ -71,6 +74,8 @@ public class gameManager : MonoBehaviour
         //current wave is over
         if (enemyCount <= 0)
         {
+            Debug.Log("ENEMIES ALL ELIMINATED");
+
             //checks if that was last wave
             if (currentWave == totalWaves)
             {
@@ -91,10 +96,12 @@ public class gameManager : MonoBehaviour
     public void nextWave()
     {
         currentWave += 1;
+        waveCounter.text = currentWave.ToString("F0");
         Debug.Log("Starting wave: " + currentWave);
 
         //Spawn enemies based on currentWave
         enemySpawner.StartWave(currentWave);
+
     }
 
     public void statePause()

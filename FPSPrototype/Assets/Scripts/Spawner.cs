@@ -11,13 +11,13 @@ public class Spawner : MonoBehaviour
     [SerializeField] int enemiesPerWave;
     [SerializeField] float delaySpawn = 1.0f;
 
-    private int enemiesRemaining;
+    //private int enemiesRemaining;
     private int spawnCount;
 
     // Start is called before the first frame update
     void Start()
     {
-        enemiesRemaining = 0;
+        //enemiesRemaining = 0;
     }
 
     // Update is called once per frame
@@ -36,7 +36,7 @@ public class Spawner : MonoBehaviour
 
     private IEnumerator SpawnEnemies()
     {
-        enemiesRemaining = spawnCount;
+        //enemiesRemaining = spawnCount;
 
         for (int i = 0; i < spawnCount; i++)
         {
