@@ -4,27 +4,14 @@ using UnityEngine;
 
 public class Spawner : MonoBehaviour
 {
-    public GameObject enemy;
+    public GameObject[] enemies;
 
     public Transform[] spawnPoints;
 
     [SerializeField] int enemiesPerWave;
     [SerializeField] float delaySpawn = 1.0f;
 
-    //private int enemiesRemaining;
     private int spawnCount;
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        //enemiesRemaining = 0;
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
 
     public void StartWave(int waveNum)
     {
@@ -36,13 +23,14 @@ public class Spawner : MonoBehaviour
 
     private IEnumerator SpawnEnemies()
     {
-        //enemiesRemaining = spawnCount;
 
         for (int i = 0; i < spawnCount; i++)
         {
             Transform spawnPos = spawnPoints[Random.Range(0, spawnPoints.Length)];
 
-            Instantiate(enemy, spawnPos.position, spawnPos.rotation);
+            GameObject enemyToSpawn = enemies[Random.Range(0, enemies.Length)];
+
+            Instantiate(enemyToSpawn, spawnPos.position, spawnPos.rotation);
 
             yield return new WaitForSeconds(delaySpawn);
         }
