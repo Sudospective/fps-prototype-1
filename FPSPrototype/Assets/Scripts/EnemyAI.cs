@@ -27,6 +27,7 @@ public class EnemyAI : MonoBehaviour, IDamage
 
     void Start()
     {
+        colorHit = Color.red;
         colorOriginal = model.material.color;
         gameManager.instance.updateGameGoal(1);
     }
