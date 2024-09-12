@@ -713,6 +713,7 @@ MonoBehaviour:
   navAgent: {fileID: 6549056634470470845}
   shootPos: {fileID: 2931642035101181733}
   headPos: {fileID: 1397632919255157343}
+  faceTargetSpeed: 2
   hitpoints: 5
   bullet: {fileID: 5767421377003861557, guid: f3751e804a968bb4785a309a6bb176f4, type: 3}
   shootRate: 1
