@@ -54,10 +54,11 @@ public class EnemyAI : MonoBehaviour, IDamage
     {
         isShooting = true;
         GameObject b = Instantiate(bullet, shootPos.position, transform.rotation);
+        // Get the damage component and multiply by the attack damage of the enemy
         Damage dmg = b.GetComponent<Damage>();
         if (dmg != null)
         {
-            dmg.damageAmount *= attackDamage;
+            dmg.damageAmount = attackDamage;
         }
         yield return new WaitForSeconds(shootRate);
         isShooting = false;
