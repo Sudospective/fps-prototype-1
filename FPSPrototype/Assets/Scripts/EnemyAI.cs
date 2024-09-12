@@ -22,7 +22,6 @@ public class EnemyAI : MonoBehaviour, IDamage
 
     void Start()
     {
-        Debug.Log("INTIAL HITPOINTS : " + hitpoints);
         colorOriginal = model.material.color;
         gameManager.instance.updateGameGoal(1);
     }
@@ -47,15 +46,12 @@ public class EnemyAI : MonoBehaviour, IDamage
 
     public void TakeDamage(int damage)
     {
-        Debug.Log("TAKE DAMAGE CALLED");
         hitpoints -= damage;
         StartCoroutine(FlashColor());
         
         if (hitpoints <= 0)
         {
-            Debug.Log("DESTROYING OBJECT " + gameObject.name);
             Destroy(gameObject);
-            Debug.Log("HIT POINTS HAVE DROPPED BELOW 0");
             gameManager.instance.updateGameGoal(-1);
             
         }

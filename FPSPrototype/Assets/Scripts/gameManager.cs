@@ -65,7 +65,6 @@ public class gameManager : MonoBehaviour
 
     public void updateGameGoal(int amount)
     {
-        Debug.Log("UPDATE GAME GOAL CALLED");
 
         // increment enemy count by amount
         enemyCount += amount;
@@ -74,7 +73,6 @@ public class gameManager : MonoBehaviour
         //current wave is over
         if (enemyCount <= 0)
         {
-            Debug.Log("ENEMIES ALL ELIMINATED");
 
             //checks if that was last wave
             if (currentWave == totalWaves)
@@ -97,7 +95,6 @@ public class gameManager : MonoBehaviour
     {
         currentWave += 1;
         waveCounter.text = currentWave.ToString("F0");
-        Debug.Log("Starting wave: " + currentWave);
 
         //Spawn enemies based on currentWave
         enemySpawner.StartWave(currentWave);
