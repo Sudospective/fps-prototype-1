@@ -30,6 +30,7 @@ public class gameManager : MonoBehaviour
     public GameObject player;     //changed from serialized field to public to grant access to the enemy ai agent -Demetreus
     public playerController playerScript;
     public GameObject damagePanel;
+    [SerializeField] public GameObject hitMarker;
     // We can get the health from the player. ~Ami
     //[SerializeField] int playerHealth;
     [SerializeField] public Image playerHPBarFill;
@@ -120,6 +121,13 @@ public class gameManager : MonoBehaviour
         Cursor.lockState = CursorLockMode.Locked;
         menuActive.SetActive(isPaused);
         menuActive = null;
+    }
+
+    public IEnumerator FlashHitMarker()
+    {
+        hitMarker.SetActive(true);
+        yield return new WaitForSeconds(0.1f);
+        hitMarker.SetActive(false);
     }
 
     public void youLose()

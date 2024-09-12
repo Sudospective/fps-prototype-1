@@ -73,6 +73,7 @@ public class EnemyAI : MonoBehaviour, IDamage
     {
         hitpoints -= damage;
         StartCoroutine(FlashColor());
+        gameManager.instance.StartCoroutine(gameManager.instance.FlashHitMarker());
         
         if (hitpoints <= 0)
         {
