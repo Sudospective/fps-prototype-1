@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class playerController : MonoBehaviour, IDamage
 {
-    [SerializeField] int HP;
+    [SerializeField] public int HP;
     [SerializeField] float speed;
     [SerializeField] float sprintModifier;
     [SerializeField] int numberOfJumps;
