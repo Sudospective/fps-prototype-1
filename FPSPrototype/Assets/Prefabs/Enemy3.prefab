@@ -1171,7 +1171,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: edc6e6989a4d5a54d9459cae3d9503c1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  model: {fileID: 13700192, guid: 3d06f9e13e57b434dbbb7e7b64c158e1, type: 3}
+  model: {fileID: 1016573228827050168}
   navAgent: {fileID: 3373742227720168958}
   shootPos: {fileID: 3186352657433988280}
   headPos: {fileID: 6413770385045296423}
@@ -1211,7 +1211,7 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 0.5
-  m_Speed: 4.8
+  m_Speed: 8
   m_Acceleration: 8
   avoidancePriority: 50
   m_AngularSpeed: 120

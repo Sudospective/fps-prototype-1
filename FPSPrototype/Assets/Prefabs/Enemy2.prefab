@@ -647,7 +647,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: edc6e6989a4d5a54d9459cae3d9503c1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  model: {fileID: 8972029283949004498}
+  model: {fileID: 859927006957341746}
   navAgent: {fileID: 2164363911429678047}
   shootPos: {fileID: 3620692810800536105}
   headPos: {fileID: 6026210970100652809}

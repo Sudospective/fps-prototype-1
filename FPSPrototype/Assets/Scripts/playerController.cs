@@ -23,10 +23,13 @@ public class playerController : MonoBehaviour, IDamage
     Vector3 playerVelocity;
 
     int maxHP;
-
     int jumpCount;
     bool isSprinting;
     bool isShooting;
+
+    [SerializeField] float slideDuration;
+    [SerializeField] float slideSpeedMultiplier;
+    bool isSliding;
 
     // Start is called before the first frame update
     void Start()
@@ -131,4 +134,7 @@ public class playerController : MonoBehaviour, IDamage
         yield return new WaitForSeconds(0.1f);
         gameManager.instance.damagePanel.SetActive(false);
     }
+
+
+    
 }

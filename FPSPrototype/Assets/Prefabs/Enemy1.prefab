@@ -709,7 +709,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: edc6e6989a4d5a54d9459cae3d9503c1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  model: {fileID: 4725061720608604637}
+  model: {fileID: 5134950618864393780}
   navAgent: {fileID: 6549056634470470845}
   shootPos: {fileID: 2931642035101181733}
   headPos: {fileID: 1397632919255157343}

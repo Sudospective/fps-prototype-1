@@ -31,8 +31,8 @@ public class EnemyAI : MonoBehaviour, IDamage
         // are using a prefab instead of a
         // game object. Comment out for now. ~Ami
 
-        //colorHit = Color.red;
-        //colorOriginal = model.material.color;
+        colorHit = Color.red;
+        colorOriginal = model.material.color;
         gameManager.instance.updateGameGoal(1);
     }
 
@@ -89,8 +89,8 @@ public class EnemyAI : MonoBehaviour, IDamage
         // are using a prefab instead of a
         // game object. Comment out for now. ~Ami
 
-        //model.material.color = colorHit;
+        model.material.color = colorHit;
         yield return new WaitForSeconds(0.1f);
-        //model.material.color = colorOriginal;
+        model.material.color = colorOriginal;
     }
 }
