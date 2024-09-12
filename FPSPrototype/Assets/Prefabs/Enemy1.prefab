@@ -716,6 +716,7 @@ MonoBehaviour:
   faceTargetSpeed: 2
   hitpoints: 5
   bullet: {fileID: 5767421377003861557, guid: f3751e804a968bb4785a309a6bb176f4, type: 3}
+  attackDamage: 5
   shootRate: 1
 --- !u!195 &6549056634470470845
 NavMeshAgent:

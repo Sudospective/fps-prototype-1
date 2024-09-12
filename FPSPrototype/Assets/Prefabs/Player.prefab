@@ -199,7 +199,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fdf9fe021023a954483e28dc00953071, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  HP: 15
+  HP: 25
   speed: 3
   sprintModifier: 5
   numberOfJumps: 2

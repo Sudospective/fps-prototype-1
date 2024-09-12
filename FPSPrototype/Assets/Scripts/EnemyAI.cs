@@ -22,6 +22,7 @@ public class EnemyAI : MonoBehaviour, IDamage
     bool playerInRange;
 
     [SerializeField] GameObject bullet;
+    [SerializeField] int attackDamage;
     [SerializeField] float shootRate;
 
     void Start()
@@ -52,7 +53,12 @@ public class EnemyAI : MonoBehaviour, IDamage
     IEnumerator Shoot()
     {
         isShooting = true;
-        Instantiate(bullet, shootPos.position, transform.rotation);
+        GameObject b = Instantiate(bullet, shootPos.position, transform.rotation);
+        Damage dmg = b.GetComponent<Damage>();
+        if (dmg != null)
+        {
+            dmg.damageAmount *= attackDamage;
+        }
         yield return new WaitForSeconds(shootRate);
         isShooting = false;
     }

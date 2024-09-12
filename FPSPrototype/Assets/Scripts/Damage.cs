@@ -9,9 +9,9 @@ public class Damage : MonoBehaviour
     [SerializeField] damageType type;
     [SerializeField] Rigidbody rb;
 
-    [SerializeField] int damageAmount;
-    [SerializeField] int speed;
-    [SerializeField] int destroyTime;
+    [SerializeField] public int damageAmount;
+    [SerializeField] public int speed;
+    [SerializeField] public int destroyTime;
 
     // Start is called before the first frame update
     void Start()
