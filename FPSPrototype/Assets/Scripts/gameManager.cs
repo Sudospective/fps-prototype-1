@@ -30,7 +30,8 @@ public class gameManager : MonoBehaviour
     public GameObject player;     //changed from serialized field to public to grant access to the enemy ai agent -Demetreus
     public playerController playerScript;
     public GameObject damagePanel;
-    [SerializeField] int playerHealth;
+    // We can get the health from the player. ~Ami
+    //[SerializeField] int playerHealth;
     [SerializeField] public Image playerHPBarFill;
     [SerializeField] public TMP_Text enemyCounter;
     [SerializeField] public TMP_Text waveCounter;
@@ -132,11 +133,11 @@ public class gameManager : MonoBehaviour
     //Getters and Setters
     public int CurrentWave => currentWave;
     public int TotalWaves => totalWaves;
-    public int PlayerHealth => playerHealth;
+    public int PlayerHealth => playerScript.HP;
 
     public void setHP(int hp)
     {
-        playerHealth = hp;
+        playerScript.HP = hp;
     }
 
 }
