@@ -92,7 +92,12 @@ public class playerController : MonoBehaviour, IDamage
         {
             if (isSliding && jumpCancel)
             {
-                playerVelocity = slideMomentum;
+                Vector3 currentForward = Camera.main.transform.forward;
+                currentForward.y = 0;
+                currentForward.Normalize();
+
+                playerVelocity = currentForward * slideMomentum.magnitude;
+                playerVelocity.y = jumpSpeed * 2.0f;
                 playerVelocity.y = jumpSpeed * 2.0f;
                 isSliding = false;
                 jumpCancel = false;
@@ -170,6 +175,7 @@ public class playerController : MonoBehaviour, IDamage
     IEnumerator Slide()
     {
         isSliding = true;
+        jumpCancel = false;
 
         float initialSpeed = speed * slideInitialSpeedMultiplier;
         float finalSpeed = speed * slideEndSpeedMultiplier;
