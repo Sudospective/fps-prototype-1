@@ -27,10 +27,6 @@ public class EnemyAI : MonoBehaviour, IDamage
 
     void Start()
     {
-        // This is causing errors because we
-        // are using a prefab instead of a
-        // game object. Comment out for now. ~Ami
-
         colorHit = Color.red;
         colorOriginal = model.material.color;
         GameManager.GetInstance().updateGameGoal(1);
@@ -85,10 +81,6 @@ public class EnemyAI : MonoBehaviour, IDamage
 
     IEnumerator FlashColor()
     {
-        // This is causing errors because we
-        // are using a prefab instead of a
-        // game object. Comment out for now. ~Ami
-
         model.material.color = colorHit;
         yield return new WaitForSeconds(0.1f);
         model.material.color = colorOriginal;
