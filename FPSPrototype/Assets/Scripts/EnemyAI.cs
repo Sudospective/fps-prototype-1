@@ -33,13 +33,13 @@ public class EnemyAI : MonoBehaviour, IDamage
 
         colorHit = Color.red;
         colorOriginal = model.material.color;
-        gameManager.instance.updateGameGoal(1);
+        GameManager.GetInstance().updateGameGoal(1);
     }
 
     void Update()
     {
-        playerDirection = gameManager.instance.player.transform.position - headPos.position;
-        navAgent.SetDestination(gameManager.instance.player.transform.position);
+        playerDirection = GameManager.GetInstance().player.transform.position - headPos.position;
+        navAgent.SetDestination(GameManager.GetInstance().player.transform.position);
 
         if (navAgent.remainingDistance < navAgent.stoppingDistance)
             FaceTarget();
@@ -73,12 +73,12 @@ public class EnemyAI : MonoBehaviour, IDamage
     {
         hitpoints -= damage;
         StartCoroutine(FlashColor());
-        gameManager.instance.StartCoroutine(gameManager.instance.FlashHitMarker());
+        GameManager.GetInstance().StartCoroutine(GameManager.GetInstance().FlashHitMarker());
         
         if (hitpoints <= 0)
         {
             Destroy(gameObject);
-            gameManager.instance.updateGameGoal(-1);
+            GameManager.GetInstance().updateGameGoal(-1);
             
         }
     }

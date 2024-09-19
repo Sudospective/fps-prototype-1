@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class playerController : MonoBehaviour, IDamage
+public class PlayerController : MonoBehaviour, IDamage
 {
     [SerializeField] public int HP;
     [SerializeField] float speed;
@@ -136,7 +136,7 @@ public class playerController : MonoBehaviour, IDamage
 
     void UpdatePlayerUI()
     {
-        gameManager.instance.playerHPBarFill.fillAmount = (float)HP / maxHP;
+        GameManager.GetInstance().playerHPBarFill.fillAmount = (float)HP / maxHP;
     }
 
     IEnumerator Shoot()
@@ -160,15 +160,15 @@ public class playerController : MonoBehaviour, IDamage
         if (HP <= 0)
         {
             //the player is dead
-            gameManager.instance.youLose();
+            GameManager.GetInstance().youLose();
         }
     }
 
     IEnumerator damageFlash()
     {
-        gameManager.instance.damagePanel.SetActive(true);
+        GameManager.GetInstance().damagePanel.SetActive(true);
         yield return new WaitForSeconds(0.1f);
-        gameManager.instance.damagePanel.SetActive(false);
+        GameManager.GetInstance().damagePanel.SetActive(false);
     }
 
 

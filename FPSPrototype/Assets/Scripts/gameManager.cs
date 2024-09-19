@@ -4,9 +4,9 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class gameManager : MonoBehaviour
+public class GameManager : MonoBehaviour
 {
-    public static gameManager instance;
+    private static GameManager instance;
 
     float timeScaleOrig;
     int enemyCount;
@@ -28,7 +28,7 @@ public class gameManager : MonoBehaviour
 
     //Player
     public GameObject player;     //changed from serialized field to public to grant access to the enemy ai agent -Demetreus
-    public playerController playerScript;
+    public PlayerController playerScript;
     public GameObject damagePanel;
     [SerializeField] public GameObject hitMarker;
     // We can get the health from the player. ~Ami
@@ -43,7 +43,7 @@ public class gameManager : MonoBehaviour
         instance = this;
         timeScaleOrig = Time.timeScale;
         player = GameObject.FindWithTag("Player");
-        playerScript = player.GetComponent<playerController>();
+        playerScript = player.GetComponent<PlayerController>();
 
         currentWave = 0;
         nextWave();
@@ -137,11 +137,11 @@ public class gameManager : MonoBehaviour
         menuActive.SetActive(true);
     }
 
-
     //Getters and Setters
     public int CurrentWave => currentWave;
     public int TotalWaves => totalWaves;
     public int PlayerHealth => playerScript.HP;
+    public static GameManager GetInstance() { return instance; }
 
     public void setHP(int hp)
     {
