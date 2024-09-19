@@ -141,6 +141,7 @@ public class GameManager : MonoBehaviour
     public int CurrentWave => currentWave;
     public int TotalWaves => totalWaves;
     public int PlayerHealth => playerScript.HP;
+    public bool IsPaused => isPaused;
     public static GameManager GetInstance() { return instance; }
 
     public void setHP(int hp)

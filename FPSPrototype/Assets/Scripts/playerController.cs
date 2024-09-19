@@ -45,24 +45,29 @@ public class PlayerController : MonoBehaviour, IDamage
     // Update is called once per frame  
     void Update()
     {
-        Movement();
+        // If we aren't paused
+        if (!GameManager.GetInstance().IsPaused)
+        {
+            Movement();
+
+            // If we aren't shooting already
+            if (Input.GetButton("Fire1") && !isShooting)
+            {
+                StartCoroutine(Shoot());
+            }
+
+            if (Input.GetButtonDown("Slide") && controller.isGrounded && !isSliding)
+            {
+                StartCoroutine(Slide());
+            }
+
+            if (Input.GetButtonDown("Jump") && isSliding)
+            {
+                jumpCancel = true;
+            }
+        }
+
         Sprint();
-
-        // If we aren't shooting already and we aren't paused
-        if (Input.GetButton("Fire1") && !isShooting)
-        {
-            StartCoroutine(Shoot());
-        }
-
-        if (Input.GetButtonDown("Slide") && controller.isGrounded && !isSliding)
-        {
-            StartCoroutine(Slide());
-        }
-
-        if(Input.GetButtonDown("Jump") && isSliding)
-        {
-            jumpCancel = true;
-        }
     }
 
     void Movement()
