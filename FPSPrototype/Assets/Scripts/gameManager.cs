@@ -46,7 +46,7 @@ public class GameManager : MonoBehaviour
         playerScript = player.GetComponent<PlayerController>();
 
         currentWave = 0;
-        nextWave();
+        NextWave();
     }
 
     // Update is called once per frame
@@ -56,18 +56,18 @@ public class GameManager : MonoBehaviour
         {
             if (menuActive == null)
             {
-                statePause();
+                StatePause();
                 menuActive = menuPause;
                 menuActive.SetActive(isPaused);
             }
             else if (menuActive == menuPause)
             {
-                stateUnpause();
+                StateUnpause();
             }
         }
     }
 
-    public void updateGameGoal(int amount)
+    public void UpdateGameGoal(int amount)
     {
 
         // increment enemy count by amount
@@ -82,20 +82,20 @@ public class GameManager : MonoBehaviour
             if (currentWave == totalWaves)
             {
                 //player wins
-                statePause();
+                StatePause();
                 isPaused = true;
                 menuActive = menuWin;
                 menuActive.SetActive(isPaused);
             }
             else
             {
-                nextWave();
+                NextWave();
             }
         }
 
     }
 
-    public void nextWave()
+    public void NextWave()
     {
         currentWave += 1;
         waveCounter.text = currentWave.ToString("F0");
@@ -105,7 +105,7 @@ public class GameManager : MonoBehaviour
 
     }
 
-    public void statePause()
+    public void StatePause()
     {
         isPaused = !isPaused;
         Time.timeScale = 0;
@@ -113,7 +113,7 @@ public class GameManager : MonoBehaviour
         Cursor.lockState = CursorLockMode.Confined;
     }
 
-    public void stateUnpause()
+    public void StateUnpause()
     {
         isPaused = !isPaused;
         Time.timeScale = timeScaleOrig;
@@ -130,9 +130,9 @@ public class GameManager : MonoBehaviour
         hitMarker.SetActive(false);
     }
 
-    public void youLose()
+    public void YouLose()
     {
-        statePause();
+        StatePause();
         menuActive = menuLose;
         menuActive.SetActive(true);
     }
@@ -144,7 +144,7 @@ public class GameManager : MonoBehaviour
     public bool IsPaused => isPaused;
     public static GameManager GetInstance() { return instance; }
 
-    public void setHP(int hp)
+    public void SetHP(int hp)
     {
         playerScript.HP = hp;
     }

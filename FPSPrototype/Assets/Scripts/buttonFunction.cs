@@ -3,20 +3,20 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class buttonFunction : MonoBehaviour
+public class ButtonFunction : MonoBehaviour
 {
- public void resume()
+ public void Resume()
     {
-        GameManager.GetInstance().stateUnpause();
+        GameManager.GetInstance().StateUnpause();
     }
 
-    public void restart()
+    public void Restart()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-        GameManager.GetInstance().stateUnpause();
+        GameManager.GetInstance().StateUnpause();
     }
 
-    public void quit()
+    public void Quit()
     {
 #if UNITY_EDITOR
         UnityEditor.EditorApplication.isPlaying = false;

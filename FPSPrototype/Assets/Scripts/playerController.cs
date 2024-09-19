@@ -2,9 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerController : MonoBehaviour, IDamage
+public class PlayerController : MonoBehaviour,
+    // Interfaces
+    IDamage
 {
-    [SerializeField] public int HP;
+    [SerializeField] public int HP { get; set; }
     [SerializeField] float speed;
     [SerializeField] float sprintModifier;
     [SerializeField] int numberOfJumps;
@@ -160,16 +162,16 @@ public class PlayerController : MonoBehaviour, IDamage
         HP -= amount;
         // Update UI
         UpdatePlayerUI();
-        StartCoroutine(damageFlash());
+        StartCoroutine(DamageFlash());
 
         if (HP <= 0)
         {
             //the player is dead
-            GameManager.GetInstance().youLose();
+            GameManager.GetInstance().YouLose();
         }
     }
 
-    IEnumerator damageFlash()
+    IEnumerator DamageFlash()
     {
         GameManager.GetInstance().damagePanel.SetActive(true);
         yield return new WaitForSeconds(0.1f);

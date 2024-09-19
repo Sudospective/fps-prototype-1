@@ -3,7 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class EnemyAI : MonoBehaviour, IDamage
+public class EnemyAI : MonoBehaviour,
+    // Interfaces
+    IDamage
 {
     [SerializeField] Renderer model;
     [SerializeField] NavMeshAgent navAgent;
@@ -29,7 +31,7 @@ public class EnemyAI : MonoBehaviour, IDamage
     {
         colorHit = Color.red;
         colorOriginal = model.material.color;
-        GameManager.GetInstance().updateGameGoal(1);
+        GameManager.GetInstance().UpdateGameGoal(1);
     }
 
     void Update()
@@ -74,7 +76,7 @@ public class EnemyAI : MonoBehaviour, IDamage
         if (hitpoints <= 0)
         {
             Destroy(gameObject);
-            GameManager.GetInstance().updateGameGoal(-1);
+            GameManager.GetInstance().UpdateGameGoal(-1);
             
         }
     }
