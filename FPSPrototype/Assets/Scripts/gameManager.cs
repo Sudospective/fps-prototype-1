@@ -45,8 +45,7 @@ public class GameManager : MonoBehaviour
         playerScript = player.GetComponent<PlayerController>();
 
         currentWave = 0;
-        NextWave();
-        Debug.Log("First NextWave is called!");
+        StartCoroutine(DelayedNextWave());
     }
 
     // Update is called once per frame
@@ -90,7 +89,6 @@ public class GameManager : MonoBehaviour
             else
             {
                 NextWave();
-                Debug.Log("Wave cleared, starting next");
             }
         }
 
@@ -102,9 +100,14 @@ public class GameManager : MonoBehaviour
         waveCounter.text = currentWave.ToString("F0");
 
         //Spawn enemies based on currentWave
-        Debug.Log("Starting wave");
         Spawner.instance.StartWave(currentWave);
 
+    }
+
+    IEnumerator DelayedNextWave()
+    {
+        yield return new WaitForSeconds(1.0f);
+        NextWave();
     }
 
     public void StatePause()

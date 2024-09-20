@@ -21,7 +21,6 @@ public class Spawner : MonoBehaviour
         {
             instance = this;
             DontDestroyOnLoad(gameObject);
-            Debug.Log("Spawner has been initialized");
         }
         else
         {
@@ -31,10 +30,10 @@ public class Spawner : MonoBehaviour
 
     public void StartWave(int waveNum)
     {
+        
         spawnCount = waveNum * enemiesPerWave;
 
         //Spawn
-        Debug.Log("Coroutine for Spawn is called!");
         StartCoroutine(SpawnEnemies());
     }
 
@@ -43,7 +42,6 @@ public class Spawner : MonoBehaviour
 
         for (int i = 0; i < spawnCount; i++)
         {
-            Debug.Log("Spawning now");
             Transform spawnPos = spawnPoints[Random.Range(0, spawnPoints.Length)];
 
             GameObject enemyToSpawn = enemies[Random.Range(0, enemies.Length)];
