@@ -16,9 +16,11 @@ public class PlayerController : MonoBehaviour,
     [SerializeField] CharacterController controller;
     [SerializeField] LayerMask ignoreMask;
 
+    [SerializeField] GameObject gunModel;
     [SerializeField] GameObject bullet;
     [SerializeField] int shootDamage;
     [SerializeField] float shootRate;
+    [SerializeField] float shootDist;
     [SerializeField] Transform shotPosition;
 
     Vector3 moveDirection;
@@ -28,6 +30,8 @@ public class PlayerController : MonoBehaviour,
     int jumpCount;
     bool isSprinting;
     bool isShooting;
+    bool hasGun = false;  
+    
 
     [SerializeField] float slideDuration;
     [SerializeField] float slideInitialSpeedMultiplier;
@@ -148,12 +152,17 @@ public class PlayerController : MonoBehaviour,
 
     IEnumerator Shoot()
     {
-        isShooting = true;
-        // Instantiate bullet
-        Instantiate(bullet, shotPosition.position, Camera.main.transform.rotation);
-        // Wait for shot rate
-        yield return new WaitForSeconds(shootRate);
-        isShooting = false;
+        if (hasGun == false)
+        {
+              yield break;
+        }
+            isShooting = true;
+            // Instantiate bullet
+            Instantiate(bullet, shotPosition.position, Camera.main.transform.rotation);
+            // Wait for shot rate
+            yield return new WaitForSeconds(shootRate);
+            isShooting = false;
+        
     }
 
     public void TakeDamage(int amount)
@@ -178,6 +187,18 @@ public class PlayerController : MonoBehaviour,
         GameManager.GetInstance().damagePanel.SetActive(false);
     }
 
+
+    public void getGunStats(GunStats gun)
+    {
+        shootDamage = gun.shootDamage;
+        shootDist = gun.shootDist;
+        shootRate = gun.shootRate;
+
+        gunModel.GetComponent<MeshFilter>().sharedMesh = gun.gunModel.GetComponent<MeshFilter>().sharedMesh;
+        gunModel.GetComponent<MeshRenderer>().sharedMaterial = gun.gunModel.GetComponent<MeshRenderer>().sharedMaterial;
+
+        hasGun = true;
+    }
 
     IEnumerator Slide()
     {
