@@ -4,8 +4,9 @@ using UnityEngine;
 
 public class Spawner : MonoBehaviour
 {
+    public static Spawner instance;
+    
     public GameObject[] enemies;
-
     public Transform[] spawnPoints;
 
     [SerializeField] int enemiesPerWave;
@@ -13,11 +14,27 @@ public class Spawner : MonoBehaviour
 
     private int spawnCount;
 
+    void Awake()
+
+    {
+        if (instance == null)
+        {
+            instance = this;
+            DontDestroyOnLoad(gameObject);
+            Debug.Log("Spawner has been initialized");
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+    }
+
     public void StartWave(int waveNum)
     {
         spawnCount = waveNum * enemiesPerWave;
 
         //Spawn
+        Debug.Log("Coroutine for Spawn is called!");
         StartCoroutine(SpawnEnemies());
     }
 
@@ -26,6 +43,7 @@ public class Spawner : MonoBehaviour
 
         for (int i = 0; i < spawnCount; i++)
         {
+            Debug.Log("Spawning now");
             Transform spawnPos = spawnPoints[Random.Range(0, spawnPoints.Length)];
 
             GameObject enemyToSpawn = enemies[Random.Range(0, enemies.Length)];

@@ -25,7 +25,7 @@ Transform:
   m_GameObject: {fileID: 6702252281541581811}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 15, z: 0}
+  m_LocalPosition: {x: 48.5, y: 2, z: -2.3}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -82,13 +82,13 @@ MonoBehaviour:
   enemies:
   - {fileID: 5526069924833876650, guid: d9c49b63e48470547b4ca5e2466864fc, type: 3}
   - {fileID: 4991417996817321772, guid: 738520a884d138d4d94eb33c9a375c69, type: 3}
-  - {fileID: 878906521788079251, guid: 35e945e1d1ea5704a8a77b04067ab895, type: 3}
+  - {fileID: 8806804562865602024, guid: 35e945e1d1ea5704a8a77b04067ab895, type: 3}
   spawnPoints:
   - {fileID: 5237901091616334770}
   - {fileID: 278027952884880386}
   - {fileID: 1709814378957256462}
   - {fileID: 8545927602004615989}
-  enemiesPerWave: 1
+  enemiesPerWave: 3
   delaySpawn: 1
 --- !u!1 &7308801540448676767
 GameObject:
@@ -115,7 +115,7 @@ Transform:
   m_GameObject: {fileID: 7308801540448676767}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 28.802536, y: 15, z: 70.17283}
+  m_LocalPosition: {x: 45.89, y: 2, z: 70.17283}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -146,7 +146,7 @@ Transform:
   m_GameObject: {fileID: 8403348708033976804}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -46.18746, y: 15, z: 55.912834}
+  m_LocalPosition: {x: -46.18746, y: 2, z: 31.6}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -177,7 +177,7 @@ Transform:
   m_GameObject: {fileID: 8562245732764874623}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -75.057465, y: 15, z: -53.947174}
+  m_LocalPosition: {x: -117.5, y: 2, z: -93.2}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

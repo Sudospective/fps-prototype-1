@@ -6,7 +6,7 @@ public class PlayerController : MonoBehaviour,
     // Interfaces
     IDamage
 {
-    [SerializeField] public int HP { get; set; }
+    [SerializeField] private int hp;
     [SerializeField] float speed;
     [SerializeField] float sprintModifier;
     [SerializeField] int numberOfJumps;
@@ -36,6 +36,13 @@ public class PlayerController : MonoBehaviour,
     bool isSliding;
     bool jumpCancel;
     Vector3 slideMomentum;
+
+    //Getter/setter for HP
+    public int HP
+    {
+        get { return hp; }
+        set { hp = value; }
+    }
 
     // Start is called before the first frame update
     void Start()

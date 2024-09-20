@@ -14,9 +14,8 @@ public class GameManager : MonoBehaviour
     //Wave Management
     [SerializeField] int currentWave;
     [SerializeField] int totalWaves;
-    [SerializeField] float waveInterval;//if we want to have waves come out on a timer,
+    //[SerializeField] float waveInterval;//if we want to have waves come out on a timer,
                                         //rather than after the entire prior wave is defeated
-    public Spawner enemySpawner;
 
     //Menu
     [SerializeField] bool isPaused;
@@ -47,6 +46,7 @@ public class GameManager : MonoBehaviour
 
         currentWave = 0;
         NextWave();
+        Debug.Log("First NextWave is called!");
     }
 
     // Update is called once per frame
@@ -90,6 +90,7 @@ public class GameManager : MonoBehaviour
             else
             {
                 NextWave();
+                Debug.Log("Wave cleared, starting next");
             }
         }
 
@@ -101,7 +102,8 @@ public class GameManager : MonoBehaviour
         waveCounter.text = currentWave.ToString("F0");
 
         //Spawn enemies based on currentWave
-        enemySpawner.StartWave(currentWave);
+        Debug.Log("Starting wave");
+        Spawner.instance.StartWave(currentWave);
 
     }
 
