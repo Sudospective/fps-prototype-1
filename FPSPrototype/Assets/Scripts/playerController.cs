@@ -165,6 +165,7 @@ public class PlayerController : MonoBehaviour,
         }
             isShooting = true;
             // Instantiate bullet
+                
             Instantiate(bullet, shotPosition.position, Camera.main.transform.rotation);
             // Wait for shot rate
             yield return new WaitForSeconds(shootRate);
