@@ -15,7 +15,7 @@ public class PlayerController : MonoBehaviour,
 
     [SerializeField] CharacterController controller;
     [SerializeField] LayerMask ignoreMask;
-
+    [SerializeField] List<GunStats> gunList = new List<GunStats>();
     [SerializeField] GameObject gunModel;
     [SerializeField] GameObject bullet;
     [SerializeField] int shootDamage;
@@ -30,7 +30,8 @@ public class PlayerController : MonoBehaviour,
     int jumpCount;
     bool isSprinting;
     bool isShooting;
-    bool hasGun = false;  
+    bool hasGun = false;
+    int selectGunPos;
     
 
     [SerializeField] float slideDuration;
@@ -62,7 +63,7 @@ public class PlayerController : MonoBehaviour,
         if (!GameManager.GetInstance().IsPaused)
         {
             Movement();
-
+            selectGun();
             // If we aren't shooting already
             if (Input.GetButton("Fire1") && !isShooting)
             {
@@ -198,6 +199,10 @@ public class PlayerController : MonoBehaviour,
 
     public void getGunStats(GunStats gun)
     {
+
+        gunList.Add(gun);
+        selectGunPos = gunList.Count - 1;
+
         shootDamage = gun.shootDamage;
         shootDist = gun.shootDist;
         shootRate = gun.shootRate;
@@ -206,6 +211,33 @@ public class PlayerController : MonoBehaviour,
         gunModel.GetComponent<MeshRenderer>().sharedMaterial = gun.gunModel.GetComponent<MeshRenderer>().sharedMaterial;
 
         hasGun = true;
+    }
+
+    void changeGun()
+    {
+        shootDamage = gunList[selectGunPos].shootDamage;
+        shootDist = gunList[selectGunPos].shootDist;
+        shootRate = gunList[selectGunPos].shootRate;
+
+        gunModel.GetComponent<MeshFilter>().sharedMesh = gunList[selectGunPos].gunModel.GetComponent<MeshFilter>().sharedMesh;
+        gunModel.GetComponent<MeshRenderer>().sharedMaterial = gunList[selectGunPos].gunModel.GetComponent<MeshRenderer>().sharedMaterial;
+    }
+
+
+    void selectGun()
+    {
+        if(Input.GetAxis("Mouse ScrollWheel") > 0 && selectGunPos < gunList.Count - 1)
+        {
+            selectGunPos++;
+            changeGun();
+
+        }
+
+        if (Input.GetAxis("Mouse ScrollWheel") < 0 && selectGunPos > 0)
+        {
+            selectGunPos--;
+            changeGun();
+        }
     }
 
     IEnumerator Slide()

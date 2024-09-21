@@ -10,14 +10,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c18e2da530543f74ebb85296c71edc01, type: 3}
-  m_Name: Gun-assault
+  m_Name: Gun-assault 4
   m_EditorClassIdentifier: 
-  gunModel: {fileID: 919132149155446097, guid: 33269b2b610f4c245a712795c1927939, type: 3}
-  shootDamage: 10
-  shootRate: 0.3
+  gunModel: {fileID: 919132149155446097, guid: ffb3f5f9531da764c906b0baf3285c62, type: 3}
+  shootDamage: 13
+  shootRate: 0.1
   shootDist: 150
   ammoCur: 0
-  ammoMax: 25
+  ammoMax: 30
   hitEffect: {fileID: 0}
   shootSound: []
   shootVol: 0
