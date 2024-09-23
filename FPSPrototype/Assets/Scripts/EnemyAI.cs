@@ -1,4 +1,3 @@
-using sfw.net;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -65,6 +64,11 @@ public class EnemyAI : MonoBehaviour,
     void Start()
     {
         colorOriginal = model.material.color;
+
+        if (animator == null)
+        {
+            animator = GetComponent<Animator>();
+        }
 
         GameManager.GetInstance().UpdateGameGoal(1);
     }

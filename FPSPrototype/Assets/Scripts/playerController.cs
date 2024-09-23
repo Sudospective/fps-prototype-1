@@ -105,7 +105,7 @@ public class PlayerController : MonoBehaviour,
         }
 
         // Move player in X and Z axis
-        controller.Move(moveDirection * speed * Time.deltaTime);
+        //controller.Move(moveDirection * speed * Time.deltaTime);
         // Check if pressing jump and if we can jump
         if (Input.GetButtonDown("Jump") && jumpCount < numberOfJumps)
         {
