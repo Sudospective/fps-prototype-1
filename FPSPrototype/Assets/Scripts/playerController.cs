@@ -164,8 +164,8 @@ public class PlayerController : MonoBehaviour,
         GameManager.GetInstance().playerHPBarFill.fillAmount = (float)HP / maxHP;
         if (gunList.Count > 0)
         {
-            GameManager.instance.ammoCurrent.text = gunList[selectGunPos].ammoCur.ToString("F0");
-            GameManager.instance.ammoMax.text = gunList[selectGunPos].ammoMax.ToString("F0");
+            GameManager.GetInstance().ammoCurrent.text = gunList[selectGunPos].ammoCur.ToString("F0");
+            GameManager.GetInstance().ammoMax.text = gunList[selectGunPos].ammoMax.ToString("F0");
         }
 
     }
