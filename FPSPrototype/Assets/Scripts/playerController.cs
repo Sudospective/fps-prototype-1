@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditorInternal;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour,
@@ -65,9 +66,14 @@ public class PlayerController : MonoBehaviour,
             Movement();
             selectGun();
             // If we aren't shooting already
-            if (Input.GetButton("Fire1") && !isShooting)
+            if (Input.GetButton("Fire1") && gunList.Count > 0  && gunList[selectGunPos].ammoCur > 0 && !isShooting)
             {
                 StartCoroutine(Shoot());
+            }
+            if(Input.GetButton("Reload") && !isShooting)
+            {
+                Reload();
+                
             }
 
             if (Input.GetButtonDown("Slide") && controller.isGrounded && !isSliding)
@@ -156,6 +162,12 @@ public class PlayerController : MonoBehaviour,
     void UpdatePlayerUI()
     {
         GameManager.GetInstance().playerHPBarFill.fillAmount = (float)HP / maxHP;
+        if (gunList.Count > 0)
+        {
+            GameManager.instance.ammoCurrent.text = gunList[selectGunPos].ammoCur.ToString("F0");
+            GameManager.instance.ammoMax.text = gunList[selectGunPos].ammoMax.ToString("F0");
+        }
+
     }
 
     IEnumerator Shoot()
@@ -165,8 +177,11 @@ public class PlayerController : MonoBehaviour,
               yield break;
         }
             isShooting = true;
-            // Instantiate bullet
-                
+            gunList[selectGunPos].ammoCur--;
+            UpdatePlayerUI(); 
+           // Instantiate bullet
+
+
             Instantiate(bullet, shotPosition.position, Camera.main.transform.rotation);
             // Wait for shot rate
             yield return new WaitForSeconds(shootRate);
@@ -202,6 +217,7 @@ public class PlayerController : MonoBehaviour,
 
         gunList.Add(gun);
         selectGunPos = gunList.Count - 1;
+        UpdatePlayerUI();
 
         shootDamage = gun.shootDamage;
         shootDist = gun.shootDist;
@@ -215,6 +231,7 @@ public class PlayerController : MonoBehaviour,
 
     void changeGun()
     {
+        UpdatePlayerUI();
         shootDamage = gunList[selectGunPos].shootDamage;
         shootDist = gunList[selectGunPos].shootDist;
         shootRate = gunList[selectGunPos].shootRate;
@@ -275,6 +292,16 @@ public class PlayerController : MonoBehaviour,
             jumpCancel = false;
         }
     }
+
+    void Reload()
+    {
+        if(gunList.Count > 0)
+        {
+            gunList[selectGunPos].ammoCur = gunList[selectGunPos].ammoMax;
+            UpdatePlayerUI();
+        }
+    }
+
 }
     
 

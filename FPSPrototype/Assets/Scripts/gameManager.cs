@@ -23,7 +23,9 @@ public class GameManager : MonoBehaviour
     [SerializeField] GameObject menuPause;
     [SerializeField] GameObject menuWin;
     [SerializeField] GameObject menuLose;
-    
+    public TMP_Text ammoCurrent;
+    public TMP_Text ammoMax;
+
 
     //Player
     public GameObject player;     //changed from serialized field to public to grant access to the enemy ai agent -Demetreus
