@@ -264,6 +264,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4678365813363894728, guid: 84c4c4d26731e4a4d964f45fc0940dae, type: 3}
+      propertyPath: enemiesPerWave
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 6862749197297863607, guid: 84c4c4d26731e4a4d964f45fc0940dae, type: 3}
       propertyPath: m_Name
       value: Spawner
@@ -273,18 +277,7 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 84c4c4d26731e4a4d964f45fc0940dae, type: 3}
---- !u!114 &1382408272 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 3097430154468585790, guid: 40497ebf5eec56e45a9ffea0d18694bb, type: 3}
-  m_PrefabInstance: {fileID: 1736844431}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!1001 &1532217726
+--- !u!1001 &1055504843
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -294,7 +287,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1594565305254702161, guid: 7bb96ec718bf83b469dbabe8c2eca7b5, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -99
+      value: -112.69
       objectReference: {fileID: 0}
     - target: {fileID: 1594565305254702161, guid: 7bb96ec718bf83b469dbabe8c2eca7b5, type: 3}
       propertyPath: m_LocalPosition.y
@@ -341,6 +334,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7bb96ec718bf83b469dbabe8c2eca7b5, type: 3}
+--- !u!114 &1382408272 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3097430154468585790, guid: 40497ebf5eec56e45a9ffea0d18694bb, type: 3}
+  m_PrefabInstance: {fileID: 1736844431}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1736844431
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -873,4 +877,4 @@ SceneRoots:
   - {fileID: 7825096251057813046}
   - {fileID: 8903235380170617370}
   - {fileID: 2890688503582603046}
-  - {fileID: 1532217726}
+  - {fileID: 1055504843}
