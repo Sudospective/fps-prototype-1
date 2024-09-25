@@ -1495,7 +1495,6 @@ MonoBehaviour:
   HPBarImage: {fileID: 0}
   drawPos: {fileID: 6643464302592070213}
   headPos: {fileID: 2791613751849881337}
-  meleeCollider: {fileID: 0}
   arrowCollider: {fileID: 9067762863623277615, guid: 812cf17b35150f04ab12e8d2077ffb86, type: 3}
   arrow: {fileID: 3931453422100055745, guid: 812cf17b35150f04ab12e8d2077ffb86, type: 3}
   hand: {fileID: 7432210657593229940}
