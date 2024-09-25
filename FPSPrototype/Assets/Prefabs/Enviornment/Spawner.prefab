@@ -79,10 +79,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 12421e088b6af9b4594b78e2311709b3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemies:
-  - {fileID: 6796065096622808133, guid: a41239d381183bc40a5682a3c0693fab, type: 3}
-  - {fileID: 987567969059486052, guid: 2f4f68949bb50a646af1e483e753822c, type: 3}
-  - {fileID: 6423878018877695405, guid: 68c06f3cb8d15f741a57cb696ed3c334, type: 3}
   spawnPoints:
   - {fileID: 5237901091616334770}
   - {fileID: 278027952884880386}
@@ -90,6 +86,10 @@ MonoBehaviour:
   - {fileID: 8545927602004615989}
   enemiesPerWave: 3
   delaySpawn: 1
+  athena: {fileID: 6423878018877695405, guid: 68c06f3cb8d15f741a57cb696ed3c334, type: 3}
+  ares: {fileID: 987567969059486052, guid: 2f4f68949bb50a646af1e483e753822c, type: 3}
+  apollo: {fileID: 6796065096622808133, guid: a41239d381183bc40a5682a3c0693fab, type: 3}
+  zeus: {fileID: 0}
 --- !u!1 &7308801540448676767
 GameObject:
   m_ObjectHideFlags: 0

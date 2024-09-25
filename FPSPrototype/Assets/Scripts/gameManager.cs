@@ -6,7 +6,8 @@ using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
-    public static GameManager instance;
+    // Please use GameManager.GetInstance() rather than GameManager.instance. ~Ami
+    private static GameManager instance;
 
     float timeScaleOrig;
     int enemyCount;

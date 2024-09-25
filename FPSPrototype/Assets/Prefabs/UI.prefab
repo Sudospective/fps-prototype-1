@@ -3216,6 +3216,8 @@ MonoBehaviour:
   menuPause: {fileID: 8906279910316790783}
   menuWin: {fileID: 1133775311680557389}
   menuLose: {fileID: 114230747734798354}
+  ammoCurrent: {fileID: 3097430154468585790}
+  ammoMax: {fileID: 77837691550700435}
   player: {fileID: 0}
   playerScript: {fileID: 0}
   damagePanel: {fileID: 4122445779882819820}
