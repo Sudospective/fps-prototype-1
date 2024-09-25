@@ -22,6 +22,7 @@ public class PlayerController : MonoBehaviour,
     [SerializeField] float shootRate;
     [SerializeField] float shootDist;
     [SerializeField] Transform shotPosition;
+    [SerializeField] Renderer muzzleFlash;
 
     Vector3 moveDirection;
     Vector3 playerVelocity;
@@ -181,10 +182,19 @@ public class PlayerController : MonoBehaviour,
 
         // Instantiate bullet
         Instantiate(bullet, shotPosition.position, Camera.main.transform.rotation);
+        StartCoroutine(FlashMuzzle());
         // Wait for shot rate
         yield return new WaitForSeconds(shootRate);
         isShooting = false;
         
+    }
+
+    IEnumerator FlashMuzzle()
+    {
+        muzzleFlash.enabled = true;
+        yield return new WaitForSeconds(0.05f);
+        muzzleFlash.enabled = false;
+
     }
 
     public void TakeDamage(int amount)
