@@ -222,7 +222,7 @@ public class PlayerController : MonoBehaviour,
 
     public void GetGunStats(GunStats gun)
     {
-
+        gun.InitializeAmmo();
         gunList.Add(gun);
         selectGunPos = gunList.Count - 1;
         UpdatePlayerUI();
@@ -305,18 +305,13 @@ public class PlayerController : MonoBehaviour,
     {
         if (gunList.Count > 0 && !isShooting)
         {
-
-           if (gunList[selectGunPos].ammoCur == 0)
-            { 
-
             int ammoNeeded = gunList[selectGunPos].ammoMax - gunList[selectGunPos].ammoCur;
-                if (ammoNeeded > 0)
-                {
-                    int ammoToLoad = Mathf.Min(ammoNeeded, gunList[selectGunPos].ammoMax);
-                    gunList[selectGunPos].ammoCur += ammoToLoad;
-                    gunList[selectGunPos].ammoMax -= ammoToLoad;
-                    UpdatePlayerUI();
-                }
+            if (ammoNeeded > 0)
+            {
+                int ammoToLoad = Mathf.Min(ammoNeeded, gunList[selectGunPos].ammoMax);
+                gunList[selectGunPos].ammoCur += ammoToLoad;
+                //gunList[selectGunPos].ammoMax -= ammoToLoad;
+                UpdatePlayerUI();
             }
         }
 
