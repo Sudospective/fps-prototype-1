@@ -1,6 +1,5 @@
 using System.Collections;
 using System.Collections.Generic;
-using UnityEditorInternal;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour,
@@ -64,9 +63,9 @@ public class PlayerController : MonoBehaviour,
         if (!GameManager.GetInstance().IsPaused)
         {
             Movement();
-            selectGun();
+            SelectGun();
             // If we aren't shooting already
-            if (Input.GetButton("Fire1") && gunList.Count > 0  && gunList[selectGunPos].ammoCur > 0 && !isShooting)
+            if (Input.GetButton("Fire1") && hasGun && gunList[selectGunPos].ammoCur > 0 && !isShooting)
             {
                 StartCoroutine(Shoot());
             }
@@ -172,20 +171,19 @@ public class PlayerController : MonoBehaviour,
 
     IEnumerator Shoot()
     {
-        if (hasGun == false)
+        if (!hasGun)
         {
               yield break;
         }
-            isShooting = true;
-            gunList[selectGunPos].ammoCur--;
-            UpdatePlayerUI(); 
-           // Instantiate bullet
+        isShooting = true;
+        gunList[selectGunPos].ammoCur--;
+        UpdatePlayerUI();
 
-
-            Instantiate(bullet, shotPosition.position, Camera.main.transform.rotation);
-            // Wait for shot rate
-            yield return new WaitForSeconds(shootRate);
-            isShooting = false;
+        // Instantiate bullet
+        Instantiate(bullet, shotPosition.position, Camera.main.transform.rotation);
+        // Wait for shot rate
+        yield return new WaitForSeconds(shootRate);
+        isShooting = false;
         
     }
 
@@ -212,7 +210,7 @@ public class PlayerController : MonoBehaviour,
     }
 
 
-    public void getGunStats(GunStats gun)
+    public void GetGunStats(GunStats gun)
     {
 
         gunList.Add(gun);
@@ -229,7 +227,7 @@ public class PlayerController : MonoBehaviour,
         hasGun = true;
     }
 
-    void changeGun()
+    void ChangeGun()
     {
         UpdatePlayerUI();
         shootDamage = gunList[selectGunPos].shootDamage;
@@ -241,19 +239,19 @@ public class PlayerController : MonoBehaviour,
     }
 
 
-    void selectGun()
+    void SelectGun()
     {
         if(Input.GetAxis("Mouse ScrollWheel") > 0 && selectGunPos < gunList.Count - 1)
         {
             selectGunPos++;
-            changeGun();
+            ChangeGun();
 
         }
 
         if (Input.GetAxis("Mouse ScrollWheel") < 0 && selectGunPos > 0)
         {
             selectGunPos--;
-            changeGun();
+            ChangeGun();
         }
     }
 
