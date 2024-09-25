@@ -293,10 +293,36 @@ public class PlayerController : MonoBehaviour,
 
     void Reload()
     {
-        if(gunList.Count > 0)
+        if (gunList.Count > 0 && !isShooting)
         {
-            gunList[selectGunPos].ammoCur = gunList[selectGunPos].ammoMax;
-            UpdatePlayerUI();
+
+           if (gunList[selectGunPos].ammoCur == 0)
+            { 
+
+            int ammoNeeded = gunList[selectGunPos].ammoMax - gunList[selectGunPos].ammoCur;
+                if (ammoNeeded > 0)
+                {
+                    int ammoToLoad = Mathf.Min(ammoNeeded, gunList[selectGunPos].ammoMax);
+                    gunList[selectGunPos].ammoCur += ammoToLoad;
+                    gunList[selectGunPos].ammoMax -= ammoToLoad;
+                    UpdatePlayerUI();
+                }
+            }
+        }
+
+        //if(gunList.Count > 0)
+        //{
+        // gunList[selectGunPos].ammoCur = gunList[selectGunPos].ammoMax;
+        //UpdatePlayerUI();
+        //}
+    }
+
+    public void AddAmmoToCurrentGun(int amount)
+    {
+        if (gunList.Count > 0)
+        {
+            gunList[selectGunPos].ammoMax += amount;
+            UpdatePlayerUI(); 
         }
     }
 
