@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.UI;
@@ -8,11 +7,11 @@ public class EnemyAI : MonoBehaviour,
     // Interfaces
     IDamage
 {
-    public enum EnemyType { Melee, Ranged }
+    public enum EnemyType { Tank, Agile, Ranged }
 
     [Header("Components")]
 
-    [Tooltip("The type of enemy determines their behavior and attack animation")]
+    [Tooltip("The type of enemy determines their behavior, stats, weapon, and attack animation")]
     public EnemyType enemyType;
 
     [Tooltip("Component used to manage enemy movement")]
@@ -34,12 +33,25 @@ public class EnemyAI : MonoBehaviour,
 
     [Header("Shooting")]
 
-    [SerializeField] Transform shootPos;
+    [Tooltip("The point where the enemy draws an arrow")]
+    [SerializeField] Transform drawPos;
     [SerializeField] Transform headPos;
 
+    //[Tooltip("The collider on the melee object")]
+    //[SerializeField] Collider meleeCollider;
+
+    [Tooltip("The collider on the arrow")]
+    [SerializeField] Collider arrowCollider;
+
     [SerializeField] GameObject arrow;
- 
+
+    [Tooltip("The hand that holds the arrow")]
+    [SerializeField] GameObject hand;
+
+    [Tooltip("Controls how fast the enemy shoots")]
     [SerializeField] float shootRate;
+
+    [Tooltip("Controls how fast the enemy turns to the target")]
     [SerializeField] int faceTargetSpeed;
 
     [Header("Damage Flash")]
@@ -56,6 +68,7 @@ public class EnemyAI : MonoBehaviour,
 
     bool isShooting;
     bool playerInRange;
+    
     
     Vector3 playerDirection;
 
@@ -80,16 +93,19 @@ public class EnemyAI : MonoBehaviour,
         animator.SetFloat("Speed", Mathf.Lerp(animSpeed, agentSpeed, Time.deltaTime * animSpeedTime));
 
         playerDirection = GameManager.GetInstance().player.transform.position - headPos.position;
-        //navAgent.SetDestination(GameManager.GetInstance().player.transform.position);
+        navAgent.SetDestination(GameManager.GetInstance().player.transform.position);
 
-        //if (navAgent.remainingDistance < navAgent.stoppingDistance)
-            //FaceTarget();
+        if (navAgent.remainingDistance < navAgent.stoppingDistance)
+            FaceTarget();
+
+        if (enemyType == EnemyType.Ranged && !isShooting)
+            StartCoroutine(Shoot());
     }
 
     //////////////////////////////
     ///     ENEMY BEHAVIOR     ///   
     //////////////////////////////
-    
+
     void FaceTarget()
     {
         Quaternion rot = Quaternion.LookRotation(playerDirection);
@@ -105,17 +121,37 @@ public class EnemyAI : MonoBehaviour,
     {
         isShooting = true;
 
-        CreateArrow();
+        animator.SetTrigger("Shoot");
 
         yield return new WaitForSeconds(shootRate);
 
-        isShooting= false;
+        isShooting = false;
     }
 
     public void CreateArrow()
     {
-        if (arrow != null)
-            Instantiate(arrow, shootPos.position, transform.rotation);
+        if (hand != null && arrow != null)
+        {
+            hand.SetActive(false);
+
+            Instantiate(arrow, drawPos.position, transform.rotation);
+        }
+    }
+
+    public void ReleaseArrow()
+    {
+        if (hand != null)
+            hand.SetActive(true);
+    }
+
+    public void ArrowColliderOFF()
+    {
+        arrowCollider.enabled = false;
+    }
+
+    public void ArrowColliderON()
+    {
+        arrowCollider.enabled = true;
     }
 
     ///////////////////////////////
