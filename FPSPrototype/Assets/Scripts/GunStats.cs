@@ -17,9 +17,4 @@ public class GunStats : ScriptableObject
     public ParticleSystem hitEffect;
     public AudioClip[] shootSound;
     public float shootVol;
-
-    internal void InitializeAmmo()
-    {
-        throw new NotImplementedException();
-    }
 }

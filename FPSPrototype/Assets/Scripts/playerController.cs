@@ -222,7 +222,6 @@ public class PlayerController : MonoBehaviour,
 
     public void GetGunStats(GunStats gun)
     {
-        gun.InitializeAmmo();
         gunList.Add(gun);
         selectGunPos = gunList.Count - 1;
         UpdatePlayerUI();
