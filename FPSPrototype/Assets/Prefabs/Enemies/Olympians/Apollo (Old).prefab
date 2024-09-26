@@ -2572,7 +2572,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 1064.3231, y: -10.294392, z: -1526.2678}
-  m_LocalScale: {x: 460.1293, y: 460.1293, z: 460.1293}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 5549612183545831402}
@@ -2608,9 +2608,11 @@ MonoBehaviour:
   animSpeedTime: 1
   HP: 3
   HPBarImage: {fileID: 0}
-  shootPos: {fileID: 0}
+  drawPos: {fileID: 0}
   headPos: {fileID: 4971030627515320623}
+  arrowCollider: {fileID: 5802002163735003923}
   arrow: {fileID: 0}
+  hand: {fileID: 0}
   shootRate: 1
   faceTargetSpeed: 5
   model: {fileID: 6453700958049649643}
@@ -2674,7 +2676,7 @@ CapsuleCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
