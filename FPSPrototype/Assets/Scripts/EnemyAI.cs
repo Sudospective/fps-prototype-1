@@ -1,3 +1,4 @@
+using sfw.net;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.AI;
@@ -15,12 +16,11 @@ public class EnemyAI : MonoBehaviour,
     public EnemyType enemyType;
 
     [Tooltip("Component used to manage enemy movement")]
-    [SerializeField] NavMeshAgent navAgent;
+    [SerializeField] NavMeshAgent agent;
 
     [Tooltip("Component used to control animations")]
     [SerializeField] Animator animator;
 
-    [Tooltip("")]
     [SerializeField] int animSpeedTime;
 
     [Header("Health")]
@@ -28,8 +28,8 @@ public class EnemyAI : MonoBehaviour,
     [Tooltip("Max amount of HP")]
     [SerializeField] int HP;
 
-    [Tooltip("Image used to fill enemy HP bar")]
-    [SerializeField] Image HPBarImage;
+    //[Tooltip("Image used to fill enemy HP bar")]
+    //[SerializeField] Image HPBarImage;
 
     [Header("Shooting")]
 
@@ -37,8 +37,8 @@ public class EnemyAI : MonoBehaviour,
     [SerializeField] Transform drawPos;
     [SerializeField] Transform headPos;
 
-    //[Tooltip("The collider on the melee object")]
-    //[SerializeField] Collider meleeCollider;
+    [Tooltip("The collider on the melee object")]
+    [SerializeField] Collider meleeCollider;
 
     [Tooltip("The collider on the arrow")]
     [SerializeField] Collider arrowCollider;
@@ -48,8 +48,11 @@ public class EnemyAI : MonoBehaviour,
     [Tooltip("The hand that holds the arrow")]
     [SerializeField] GameObject hand;
 
-    [Tooltip("Controls how fast the enemy shoots")]
+    [Tooltip("The is the time between enemy shots")]
     [SerializeField] float shootRate;
+
+    [Tooltip("The is the time between enemy melee attacks")]
+    [SerializeField] float attackRate;
 
     [Tooltip("Controls how fast the enemy turns to the target")]
     [SerializeField] int faceTargetSpeed;
@@ -67,6 +70,7 @@ public class EnemyAI : MonoBehaviour,
     [SerializeField] float flashDuration;
 
     bool isShooting;
+    bool isAttacking;
     bool playerInRange;
     
     
@@ -88,17 +92,24 @@ public class EnemyAI : MonoBehaviour,
 
     void Update()
     {
-        float agentSpeed = navAgent.velocity.normalized.magnitude;
+        float agentSpeed = agent.velocity.normalized.magnitude;
         float animSpeed = animator.GetFloat("Speed");
         animator.SetFloat("Speed", Mathf.Lerp(animSpeed, agentSpeed, Time.deltaTime * animSpeedTime));
 
         playerDirection = GameManager.GetInstance().player.transform.position - headPos.position;
-        navAgent.SetDestination(GameManager.GetInstance().player.transform.position);
+        agent.SetDestination(GameManager.GetInstance().player.transform.position);
 
-        if (navAgent.remainingDistance < navAgent.stoppingDistance)
+        if (agent.remainingDistance < agent.stoppingDistance)
             FaceTarget();
 
-        if (enemyType == EnemyType.Ranged && !isShooting)
+        if (enemyType == EnemyType.Tank || enemyType == EnemyType.Agile)
+        {
+            if (agent.remainingDistance != 0 && agent.remainingDistance <= agent.stoppingDistance && !isAttacking)
+            {
+                StartCoroutine(Attack());
+            }
+        }
+        else if (enemyType == EnemyType.Ranged && !isShooting)
             StartCoroutine(Shoot());
     }
 
@@ -130,28 +141,31 @@ public class EnemyAI : MonoBehaviour,
 
     public void CreateArrow()
     {
-        if (hand != null && arrow != null)
+        if (arrow != null)
         {
-            hand.SetActive(false);
-
             Instantiate(arrow, drawPos.position, transform.rotation);
         }
     }
 
-    public void ReleaseArrow()
+    IEnumerator Attack()
     {
-        if (hand != null)
-            hand.SetActive(true);
+        isAttacking = true;
+
+        animator.SetTrigger("Attack");
+
+        yield return new WaitForSeconds(attackRate);
+
+        isAttacking = false;
     }
 
-    public void ArrowColliderOFF()
+    public void MeleeColliderOFF()
     {
-        arrowCollider.enabled = false;
+        meleeCollider.enabled = false;
     }
 
-    public void ArrowColliderON()
+    public void MeleeColliderON()
     {
-        arrowCollider.enabled = true;
+        meleeCollider.enabled = true;
     }
 
     ///////////////////////////////

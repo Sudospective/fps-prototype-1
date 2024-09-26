@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7738122207580666458}
-  - component: {fileID: 1786471073314399497}
+  - component: {fileID: -5679495824144176715}
   - component: {fileID: 2366467602347081440}
   - component: {fileID: 8852929520502906930}
   - component: {fileID: -1341996117479920275}
@@ -37,7 +37,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: -148.434, y: -5.692017, z: -2.143005}
---- !u!114 &1786471073314399497
+--- !u!114 &-5679495824144176715
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -51,9 +51,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   type: 0
   rb: {fileID: -1341996117479920275}
-  damageAmount: 1
-  speed: 5
-  destroyTime: 3
+  damageAmount: 5
+  speed: 20
+  destroyTime: 5
 --- !u!33 &2366467602347081440
 MeshFilter:
   m_ObjectHideFlags: 0

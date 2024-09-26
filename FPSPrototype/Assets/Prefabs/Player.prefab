@@ -27,13 +27,13 @@ Transform:
   m_GameObject: {fileID: 705988098718943946}
   serializedVersion: 2
   m_LocalRotation: {x: -0.12854272, y: -0.13570824, z: -0.004818996, w: 0.9823629}
-  m_LocalPosition: {x: 0.95, y: -1.4, z: 1.38}
+  m_LocalPosition: {x: 0.7455072, y: -1.209513, z: 0.7562153}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2941235115197543702}
   m_Father: {fileID: 4121278677045863965}
-  m_LocalEulerAnglesHint: {x: -2.987, y: 10.048, z: -6.849}
+  m_LocalEulerAnglesHint: {x: -14.706, y: -15.925, z: 1.506}
 --- !u!33 &3160864324188219248
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -392,12 +392,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fdf9fe021023a954483e28dc00953071, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hp: 15
-  speed: 5
-  sprintModifier: 5
+  hp: 45
+  speed: 2
+  sprintModifier: 2.5
   numberOfJumps: 2
-  jumpSpeed: 12
-  gravity: 28
+  jumpSpeed: 10
+  gravity: 14
   controller: {fileID: 3388110471500263328}
   aud: {fileID: 8757270934145836776}
   ignoreMask:
@@ -408,7 +408,7 @@ MonoBehaviour:
   bullet: {fileID: 5767421377003861557, guid: f3751e804a968bb4785a309a6bb176f4, type: 3}
   shootDamage: 1
   shootRate: 0.5
-  shootDist: 5000
+  shootDist: 50
   shotPosition: {fileID: 2941235115197543702}
   muzzleFlash: {fileID: 1107792326129185944}
   audStep:

@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 87b7c91ea12fe1149b63e84f15d36818
+guid: 160fa6ce4f1ace147ae1f1098c9a05dc
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
@@ -33,11 +33,11 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: Standing Draw Arrow
+      name: Sword And Shield Slash
       takeName: mixamo.com
       internalID: -203655887218126122
       firstFrame: 0
-      lastFrame: 31
+      lastFrame: 45
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
