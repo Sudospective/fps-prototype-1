@@ -402,12 +402,12 @@ MonoBehaviour:
   aud: {fileID: 8757270934145836776}
   ignoreMask:
     serializedVersion: 2
-    m_Bits: 4
+    m_Bits: 64
   gunList: []
   gunModel: {fileID: 705988098718943946}
   bullet: {fileID: 5767421377003861557, guid: f3751e804a968bb4785a309a6bb176f4, type: 3}
   shootDamage: 1
-  shootRate: 0.5
+  shootRate: 0.1
   shootDist: 50
   shotPosition: {fileID: 2941235115197543702}
   muzzleFlash: {fileID: 1107792326129185944}
@@ -561,7 +561,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 76a8ab68b143d084d994bc4006c6e2d2, type: 3}
+  m_audioClip: {fileID: 0}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
