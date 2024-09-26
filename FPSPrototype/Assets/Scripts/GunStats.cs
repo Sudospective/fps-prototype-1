@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -17,5 +18,8 @@ public class GunStats : ScriptableObject
     public AudioClip[] shootSound;
     public float shootVol;
 
-
+    internal void InitializeAmmo()
+    {
+        throw new NotImplementedException();
+    }
 }
