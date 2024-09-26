@@ -2603,17 +2603,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyType: 1
-  navAgent: {fileID: 5545733349930387472}
+  agent: {fileID: 5545733349930387472}
   animator: {fileID: 9118380292737014729}
   animSpeedTime: 1
   HP: 3
-  HPBarImage: {fileID: 0}
   drawPos: {fileID: 0}
   headPos: {fileID: 4971030627515320623}
+  meleeCollider: {fileID: 0}
   arrowCollider: {fileID: 5802002163735003923}
   arrow: {fileID: 0}
   hand: {fileID: 0}
   shootRate: 1
+  attackRate: 0
   faceTargetSpeed: 5
   model: {fileID: 6453700958049649643}
   flashColor: {r: 1, g: 0, b: 0, a: 0}

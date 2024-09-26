@@ -14,11 +14,13 @@ public class Spawner : MonoBehaviour
     [SerializeField] float delaySpawn = 1.0f;
 
     private int spawnCount;
+    private int currentWave = 1;
 
     [SerializeField] GameObject athena;
     [SerializeField] GameObject ares;
     [SerializeField] GameObject apollo;
     [SerializeField] GameObject zeus;
+
 
     void Awake()
 
@@ -47,25 +49,24 @@ public class Spawner : MonoBehaviour
     {
         List<GameObject> enemiesToSpawn = new List<GameObject>();
 
-        if(waveNum == 1)
+        if(waveNum >= 1)
         {
             enemiesToSpawn.Add(athena);
         }
-        else if(waveNum == 2)
+        if(waveNum >= 2)
         {
-            enemiesToSpawn.Add(athena);
+
             enemiesToSpawn.Add(ares);
         }
-        else if(waveNum == 3)
+        if(waveNum >= 3)
         {
-            enemiesToSpawn.Add(athena);
-            enemiesToSpawn.Add(ares);
+           
             enemiesToSpawn.Add(apollo);
         }
-        else if(waveNum == 4)
+        if(waveNum >= 4)
         {
-            SpawnZeus();
-            yield break;
+            enemiesToSpawn.Add(zeus);
+
         }
         
         
@@ -79,14 +80,18 @@ public class Spawner : MonoBehaviour
 
             yield return new WaitForSeconds(delaySpawn);
         }
+
+        currentWave++;
     }
 
-    private IEnumerator SpawnZeus()
+
+
+   /* private IEnumerator SpawnZeus()
     {
         Debug.Log("Spawning Zeus");
         Transform spawnPos = spawnPoints[Random.Range(0, spawnPoints.Length)];
         Instantiate(zeus, spawnPos.position, spawnPos.rotation);
         yield return null;
     }
-
+   */
 }

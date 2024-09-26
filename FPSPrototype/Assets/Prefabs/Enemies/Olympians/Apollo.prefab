@@ -1488,7 +1488,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyType: 2
-  agent: {fileID: 0}
+  agent: {fileID: 8563063364650896597}
   animator: {fileID: 4448901924398619557}
   animSpeedTime: 1
   HP: 5
