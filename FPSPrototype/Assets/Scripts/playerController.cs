@@ -25,6 +25,8 @@ public class PlayerController : MonoBehaviour,
     [SerializeField] Transform shotPosition;
     [SerializeField] Renderer muzzleFlash;
 
+    [SerializeField] AudioClip[] audStep;
+    [SerializeField] float audStepVol;
     [SerializeField] AudioClip[] audJump;
     [SerializeField] float audJumpVol;
     [SerializeField] AudioClip[] audHurt;
@@ -37,6 +39,7 @@ public class PlayerController : MonoBehaviour,
     int jumpCount;
     bool isSprinting;
     bool isShooting;
+    bool isPlayingStep;
     bool hasGun = false;
     int selectGunPos;
     
@@ -111,6 +114,11 @@ public class PlayerController : MonoBehaviour,
             Input.GetAxis("Vertical") * transform.forward
         );
 
+        if (!isPlayingStep && controller.isGrounded && moveDirection.magnitude > 0)
+        {
+            StartCoroutine(PlayStep());
+        }
+
         if (!isSliding)
         {
             controller.Move(moveDirection * speed * Time.deltaTime);
@@ -180,6 +188,14 @@ public class PlayerController : MonoBehaviour,
             GameManager.GetInstance().ammoMax.text = gunList[selectGunPos].ammoMax.ToString("F0");
         }
 
+    }
+
+    IEnumerator PlayStep()
+    {
+        isPlayingStep = true;
+        aud.PlayOneShot(audStep[Random.Range(0, audStep.Length)], audStepVol);
+        yield return new WaitForSeconds(isSprinting ? 0.3f : 0.5f);
+        isPlayingStep = false;
     }
 
     IEnumerator Shoot()

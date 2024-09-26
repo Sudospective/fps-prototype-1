@@ -411,10 +411,24 @@ MonoBehaviour:
   shootDist: 5000
   shotPosition: {fileID: 2941235115197543702}
   muzzleFlash: {fileID: 1107792326129185944}
-  audJump: []
-  audJumpVol: 0
-  audHurt: []
-  audHurtVol: 0
+  audStep:
+  - {fileID: 8300000, guid: 56cd68cd951fb394fa025909ef9e80f1, type: 3}
+  - {fileID: 8300000, guid: cb7076f25f01ccd48a877c7f469aa537, type: 3}
+  - {fileID: 8300000, guid: 6cf6dafeccb57dc488d64184d31afed5, type: 3}
+  audStepVol: 0.1
+  audJump:
+  - {fileID: 8300000, guid: 6eaf7c2ded7a3d74ab456aa3a496f6a5, type: 3}
+  - {fileID: 8300000, guid: 73c0aa23510b32b42ad0fc76ee55c8c2, type: 3}
+  - {fileID: 8300000, guid: 88c7054109daf144ca9e0ddbd1c58083, type: 3}
+  audJumpVol: 0.5
+  audHurt:
+  - {fileID: 8300000, guid: d7f6905a2e5a379448666e7253b89461, type: 3}
+  - {fileID: 8300000, guid: 9d68ce2e5d0b8f6449dfd8ecb3ea0e43, type: 3}
+  - {fileID: 8300000, guid: 3ad076579f0edd04d93aa17d3ef7895c, type: 3}
+  - {fileID: 8300000, guid: e6ac20a9db4a053448bcf4fc2240bd74, type: 3}
+  - {fileID: 8300000, guid: 54fb8654b3ec82f429a6f0944be31dbf, type: 3}
+  - {fileID: 8300000, guid: eab2f37b826e32343af82c0bf33ee129, type: 3}
+  audHurtVol: 0.5
   slideDuration: 3
   slideInitialSpeedMultiplier: 3
   slideEndSpeedMultiplier: 1
