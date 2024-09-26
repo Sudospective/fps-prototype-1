@@ -2536,7 +2536,7 @@ MonoBehaviour:
   agent: {fileID: 5422427309946668210}
   animator: {fileID: 8568410238051573490}
   animSpeedTime: 4
-  HP: 20
+  HP: 10
   drawPos: {fileID: 0}
   headPos: {fileID: 1949031162854215142}
   meleeCollider: {fileID: 7070671558257034656}
