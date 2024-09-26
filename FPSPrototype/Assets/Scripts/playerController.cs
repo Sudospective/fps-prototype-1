@@ -14,6 +14,7 @@ public class PlayerController : MonoBehaviour,
     [SerializeField] float gravity;
 
     [SerializeField] CharacterController controller;
+    [SerializeField] AudioSource aud;
     [SerializeField] LayerMask ignoreMask;
     [SerializeField] List<GunStats> gunList = new List<GunStats>();
     [SerializeField] GameObject gunModel;
@@ -23,6 +24,11 @@ public class PlayerController : MonoBehaviour,
     [SerializeField] float shootDist;
     [SerializeField] Transform shotPosition;
     [SerializeField] Renderer muzzleFlash;
+
+    [SerializeField] AudioClip[] audJump;
+    [SerializeField] float audJumpVol;
+    [SerializeField] AudioClip[] audHurt;
+    [SerializeField] float audHurtVol;
 
     Vector3 moveDirection;
     Vector3 playerVelocity;
@@ -115,6 +121,7 @@ public class PlayerController : MonoBehaviour,
         // Check if pressing jump and if we can jump
         if (Input.GetButtonDown("Jump") && jumpCount < numberOfJumps)
         {
+          
             if (isSliding && jumpCancel)
             {
                 Vector3 currentForward = Camera.main.transform.forward;
@@ -126,6 +133,7 @@ public class PlayerController : MonoBehaviour,
                 playerVelocity.y = jumpSpeed * 2.0f;
                 isSliding = false;
                 jumpCancel = false;
+                aud.PlayOneShot(audJump[Random.Range(0, audJump.Length)], audJumpVol);
             }
             else if (!isSliding)
             {
@@ -133,7 +141,11 @@ public class PlayerController : MonoBehaviour,
                 jumpCount++;
                 // Set player Y velocity
                 playerVelocity.y = jumpSpeed * 2.0f;
+
+                aud.PlayOneShot(audJump[Random.Range(0, audJump.Length)], audJumpVol);
+
             }
+            
         }
 
         // Move player in Y axis
@@ -180,6 +192,9 @@ public class PlayerController : MonoBehaviour,
         gunList[selectGunPos].ammoCur--;
         UpdatePlayerUI();
 
+        aud.PlayOneShot(gunList[selectGunPos].shootSound[Random.Range(0, gunList[selectGunPos].shootSound.Length)], gunList[selectGunPos].shootVol);
+
+
         // Instantiate bullet
         Instantiate(bullet, shotPosition.position, Camera.main.transform.rotation);
         StartCoroutine(FlashMuzzle());
@@ -201,6 +216,8 @@ public class PlayerController : MonoBehaviour,
     {
         //subtract player health
         HP -= amount;
+        aud.PlayOneShot(audHurt[Random.Range(0, audHurt.Length)], audHurtVol);
+
         // Update UI
         UpdatePlayerUI();
         StartCoroutine(DamageFlash());
