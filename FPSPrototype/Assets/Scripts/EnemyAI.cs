@@ -1,7 +1,6 @@
 using System.Collections;
 using UnityEngine;
 using UnityEngine.AI;
-using UnityEngine.UI;
 
 public class EnemyAI : MonoBehaviour,
     // Interfaces
@@ -43,9 +42,6 @@ public class EnemyAI : MonoBehaviour,
     [SerializeField] Collider arrowCollider;
 
     [SerializeField] GameObject arrow;
-
-    [Tooltip("The hand that holds the arrow")]
-    [SerializeField] GameObject hand;
 
     [Tooltip("The is the time between enemy shots")]
     [SerializeField] float shootRate;
@@ -118,7 +114,7 @@ public class EnemyAI : MonoBehaviour,
 
     void FaceTarget()
     {
-        Quaternion rot = Quaternion.LookRotation(playerDirection);
+        Quaternion rot = Quaternion.LookRotation(new Vector3(playerDirection.x, 0, playerDirection.z));
         transform.rotation = Quaternion.Lerp(transform.rotation, rot, Time.deltaTime * faceTargetSpeed);
     }
 
